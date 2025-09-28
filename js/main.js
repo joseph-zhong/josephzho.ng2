@@ -33,7 +33,7 @@ function datetimeToString(dt) {
                 " because I want the people [...] to be truly the best in the world.",
             "author": "Luis von Ahn",
             "source": "blog",
-            "link": "http://vonahn.blogspot.com/2009/03/failing-students.html",
+            "link": "https://vonahn.blogspot.com/2009/03/failing-students.html",
         },
         {
             "quote": "As I look back at my life, I'd propose that my successes were the product of preparation and" +
@@ -107,25 +107,3 @@ function datetimeToString(dt) {
         setQuote(quotes[curIdx]);
     }, 15 * 1000);
 }());
-
-/** Blog. */
-jQuery(document).ready(function () {
-    let blogPrefix = "http://blog.josephzho.ng";
-    let $result = $('#blog');
-    $.get(ghost.url.api('posts', {limit: 5})).done(function(data) {
-            $.each(data.posts, function (i, post) {
-                if ('title' in post && 'url' in post && 'published_at' in post) {
-                    let li = document.createElement('li');
-                    let a = document.createElement('a');
-                    a.setAttribute('href', blogPrefix + post.url);
-                    a.innerText = post.title;
-                    li.appendChild(a);
-                    li.innerHTML += ', ' + datetimeToString(post.published_at);
-                    $result.append(li);
-                }
-            });
-        }
-    );
-});
-
-
